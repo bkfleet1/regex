@@ -76,14 +76,18 @@ Below are a few quantifier examples.
 #### Sample Code
 Below is sample javacript code using the match() function and the * quantifier, both lazy and greedy versions.
 
-**const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';**
+**const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
-**const quantifyLazy = /markets*?/g;**
-**console.log( articleTitle.match(quantifyLazy));**
+**const quantifyLazy = /markets*?/g**
+
+**console.log( articleTitle.match(quantifyLazy))**
+
 **// expected output: Array ['market', 'market']**
 
-**const quantifyGreedy = /markets*/g;**
-**console.log( articleTitle.match(quantifyGreedy));**
+**const quantifyGreedy = /markets*/g**
+
+**console.log( articleTitle.match(quantifyGreedy))**
+
 **// expected output: Array ['market', 'markets']** 
 
 ### OR Operator
@@ -104,10 +108,12 @@ Below are a few OR operator examples.
 #### Sample Code
 Below is sample javacript code using the match() function and the OR operator.
 
-**const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';**
+**const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
-**const orOperator = /marke(ts|t)/g;**
-**console.log( articleTitle.match(orOperator));**
+**const orOperator = /marke(ts|t)/g**
+
+**console.log( articleTitle.match(orOperator))**
+
 **// expected output: Array ['market', 'markets']**
 
 ### Character Classes

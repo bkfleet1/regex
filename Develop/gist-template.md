@@ -93,13 +93,13 @@ The alternation operator, also known as the OR operator, has the lowest preceden
 Below are a list of OR operators and their usage.
 | OR Operators | Use |
 |:-----------:|:-----------|
-|   'a|b'    | Matches any string that contains either ‘a’ or ‘b’. |
+|   `a|b`   | Matches any string that contains either ‘a’ or ‘b’. |
 
 #### Examples
 Below are a few OR operator examples.
 | Example | Description | Matching string examples |
 |:-----------|:-----------|:-----------|
-|   se(a|e)  | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
+|   `se(a|e)` | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
 
 #### Sample Code
 Below is sample javacript code using the match() function and the OR operator.

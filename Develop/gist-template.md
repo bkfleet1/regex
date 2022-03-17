@@ -76,19 +76,15 @@ Below are a few quantifier examples.
 #### Sample Code
 Below is sample javacript code using the match() function and the * quantifier, both lazy and greedy versions.
 
-**const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
+const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'
 
-**const quantifyLazy = /markets*?/g**
+const quantifyLazy = /markets*?/g
+console.log( articleTitle.match(quantifyLazy))
+// expected output: Array ['market', 'market']
 
-**console.log( articleTitle.match(quantifyLazy))**
-
-**// expected output: Array ['market', 'market']**
-
-**const quantifyGreedy = /markets*/g**
-
-**console.log( articleTitle.match(quantifyGreedy))**
-
-**// expected output: Array ['market', 'markets']** 
+const quantifyGreedy = /markets*/g
+console.log( articleTitle.match(quantifyGreedy))
+// expected output: Array ['market', 'markets']
 
 ### OR Operator
 The alternation operator, also known as the OR operator, has the lowest precedence of all regex operators. In other words, it tells the regex engine to match either everything to the left of the vertical bar, or everything to the right of the vertical bar. If you want to limit the reach of the alternation, you need to use parentheses for grouping.
@@ -97,7 +93,7 @@ The alternation operator, also known as the OR operator, has the lowest preceden
 Below are a list of OR operators and their usage.
 | OR Operators | Use |
 |:-----------:|:-----------|
-|  a|b  | Matches any string that contains either ‘a’ or ‘b’. |
+|  (a|b)  | Matches any string that contains either ‘a’ or ‘b’. |
 
 #### Examples
 Below are a few OR operator examples.
@@ -108,13 +104,11 @@ Below are a few OR operator examples.
 #### Sample Code
 Below is sample javacript code using the match() function and the OR operator.
 
-**const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
+const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'
 
-**const orOperator = /marke(ts|t)/g**
-
-**console.log( articleTitle.match(orOperator))**
-
-**// expected output: Array ['market', 'markets']**
+const orOperator = /marke(ts|t)/g
+console.log( articleTitle.match(orOperator))
+// expected output: Array ['market', 'markets']
 
 ### Character Classes
 

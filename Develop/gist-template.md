@@ -48,20 +48,22 @@ Below are a list of anchors and their usage.
 ### Quantifiers
 Quantifiers are used to represent the times the preeceding character or group of characters to appear in our match. By default, a quantifier matches as many instances of its quantified token or subpattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified tokens as relevant. 
 
+#### List of Quantifiers
 Below are a list of quantifiers and their usage.
 | Quantifiers| Usage |
 |:-----------:|:-----------|
-| _ | 0 or more |
-| _? | 0 or more, ungreedy |
+| * | 0 or more |
+| *? | 0 or more, lazy |
 | + | 1 or more |
-| +? | 1 or more, ungreedy |
+| +? | 1 or more, lazy |
 | ? | 0 or 1 |
-| ?? | 0 or 1, ungreedy |
+| ?? | 0 or 1, lazy |
 | {3} | Exactly 3 |
 | {3,} | 3 or more |
 | {3,5} | 3, 4 or 5 |
-| {3,5}? | 3, 4 or 5, ungreedy |
+| {3,5}? | 3, 4 or 5, lazy |
 
+#### Examples
 Below are a few quantifier examples.
 | Example | Description | Results |
 |:-----------|:-----------|:-----------|
@@ -71,20 +73,42 @@ Below are a few quantifier examples.
 | welcome!? | Matches any string ‘welcome’ followed by zero or one ‘!’ characters | “welcome”, “welcome!” |
 | (oh){2,4} | Matches any string that repeats the group of characters ‘ha’ two up to four times | “ohoh”, “ohohoh”, “ohohohoh” |
 
-Sample Code
-Below is a sample code set that you can copy and paste into a javascript file and execute. 
+#### Sample Code
+Below is sample javacript code using the match() function and the * quantifier, both lazy and greedy versions.
 
->> const modifiedQuote = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';
+>> const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';
 
->> const regexpModifications = /markets*?/g;
->> console.log(modifiedQuote.match(regexpModifications));
+>> const quantifyLazy = /markets*?/g;
+>> console.log( articleTitle.match(quantifyLazy));
 >> // expected output: Array ['market', 'market']
 
->> const regexpTooGreedy = /markets*/g;
->> console.log(modifiedQuote.match(regexpTooGreedy));
+>> const quantifyGreedy = /markets*/g;
+>> console.log( articleTitle.match(quantifyGreedy));
 >> // expected output: Array ['market', 'markets']
 
 ### OR Operator
+The alternation operator, also known as the OR operator, has the lowest precedence of all regex operators. In other words, it tells the regex engine to match either everything to the left of the vertical bar, or everything to the right of the vertical bar. If you want to limit the reach of the alternation, you need to use parentheses for grouping.
+
+#### List of OR Operators
+Below are a list of OR operators and their usage.
+| OR Operators | Use |
+|:-----------:|:-----------|
+| a|b | Matches any string that contains either ‘a’ or ‘b’. |
+
+#### Examples
+Below are a few OR operator examples.
+| Example | Description | Matching string examples |
+|:-----------|:-----------|:-----------|
+| se(a|e) | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
+
+#### Sample Code
+Below is sample javacript code using the match() function and the OR operator.
+
+>> const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';
+
+>> const orOperator = /marke(ts|t)/g;
+>> console.log( articleTitle.match(orOperator));
+>> // expected output: Array ['market', 'markets']
 
 ### Character Classes
 

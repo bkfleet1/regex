@@ -8,3 +8,7 @@ console.log(modifiedQuote.match(regexpModifications));
 const regexpTooGreedy = /markets*/g;
 console.log(modifiedQuote.match(regexpTooGreedy));
 // expected output: Array ['market', 'markets']
+
+const regexpModificationss = /marke(ts|t)/g;
+console.log(modifiedQuote.match(regexpModificationss));
+// expected output: Array ['market', 'markets']

@@ -70,9 +70,9 @@ Below are a list of quantifiers and their usage.
 |:-----------|:-----------|:-----------|
 | A+ | Matches one or more A characters | "A", "AA", "AAA", "AAAA" |
 | welcome!* | Matches any string ‘welcome’ followed by zero or more ‘!’ characters | “welcome”, “welcome!”,"welcome!!" |
-| welcome!+ Matches any string ‘welcome’ followed by one or more ‘!’ characters | “welcome!”, “welcome!!” |
-| welcome!? Matches any string ‘welcome’ followed by zero or one ‘!’ characters | “welcome”, “welcome!” |
-| (oh){2,4} Matches any string that repeats the group of characters ‘ha’ two up to four times | “ohoh”, “ohohoh”, “ohohohoh” |
+| welcome!+ | Matches any string ‘welcome’ followed by one or more ‘!’ characters | “welcome!”, “welcome!!” |
+| welcome!? | Matches any string ‘welcome’ followed by zero or one ‘!’ characters | “welcome”, “welcome!” |
+| (oh){2,4} | Matches any string that repeats the group of characters ‘ha’ two up to four times | “ohoh”, “ohohoh”, “ohohohoh” |
 
 ### OR Operator
 

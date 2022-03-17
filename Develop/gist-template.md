@@ -29,7 +29,7 @@ The content of a regular expression is entirely up to the developer, however, th
 ## Regex Components
 
 ### [Anchors](#anchors)
-An anchor specifies the position in the string on which a match must occur. When an anchor is used in a search expression, the regex engine does not advance through the string or consume characters; it looks for a match in the specified position only. For example, **^** specifies that the match must start at the beginning of a line or string. Therefore, the regular expression **^https:** matches **"https:"** only when it occurs at the beginning of a line.
+An anchor specifies the position in the string on which a match must occur. When an anchor is used in a search expression, the regex engine does not advance through the string or consume characters; it looks for a match in the specified position only. For example, **^** specifies that the match must start at the beginning of a string. Therefore, the regular expression **^https:** matches **"https:"** only when it occurs at the beginning of a string.
 
 Below are a list of anchors and their usage.
 | Anchor | Usage |
@@ -62,6 +62,7 @@ Below are a list of quantifiers and their usage.
 | {3,5} | 3, 4 or 5 |
 | {3,5}? | 3, 4 or 5, ungreedy |
 
+Below are a few quantifier examples.
 | Example | Description | Results |
 |:-----------|:-----------|:-----------|
 | A+ | Matches one or more A characters | "A", "AA", "AAA", "AAAA" |
@@ -69,6 +70,19 @@ Below are a list of quantifiers and their usage.
 | welcome!+ | Matches any string ‘welcome’ followed by one or more ‘!’ characters | “welcome!”, “welcome!!” |
 | welcome!? | Matches any string ‘welcome’ followed by zero or one ‘!’ characters | “welcome”, “welcome!” |
 | (oh){2,4} | Matches any string that repeats the group of characters ‘ha’ two up to four times | “ohoh”, “ohohoh”, “ohohohoh” |
+
+Sample Code
+Below is a sample code set that you can copy and paste into a javascript file and execute. 
+
+>> const modifiedQuote = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';
+
+>> const regexpModifications = /markets*?/g;
+>> console.log(modifiedQuote.match(regexpModifications));
+>> // expected output: Array ['market', 'market']
+
+>> const regexpTooGreedy = /markets*/g;
+>> console.log(modifiedQuote.match(regexpTooGreedy));
+>> // expected output: Array ['market', 'markets']
 
 ### OR Operator
 

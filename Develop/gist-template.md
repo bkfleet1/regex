@@ -145,7 +145,14 @@ A bracket expression, also known as a positive character group, is any character
 
 >> * **Special Characters** - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following [a-zA-Z0-9_-%]. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@[]^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
 
+#### Sample Code
+Below is sample javacript code using the match() function and a bracket expression.
 
+>> const array = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';
+
+>> const bracketExpression = /([A-Za-z0-9-]+)/g;
+>> console.log(array.match(bracketExpression));
+>> // expected output: Array ['Stock', 'market', 'is', 'supposed', 'to', 'drop', 'when', 'the', 'Fed', 'hikes', 'interest', 'rates', 'So', 'why', 'are', 'the', 'markets', 'rallying', 'now']
 
 ### Greedy and Lazy Match
 

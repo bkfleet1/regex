@@ -93,13 +93,13 @@ The alternation operator, also known as the OR operator, has the lowest preceden
 Below are a list of OR operators and their usage.
 | OR Operators | Use |
 |:-----------:|:-----------|
-|   `a|b`   | Matches any string that contains either ‘a’ or ‘b’. |
+|   a|b   | Matches any string that contains either ‘a’ or ‘b’. |
 
 #### Examples
 Below are a few OR operator examples.
 | Example | Description | Matching string examples |
 |:-----------|:-----------|:-----------|
-|   `se(a|e)` | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
+|   se(a|e) | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
 
 #### Sample Code
 Below is sample javacript code using the match() function and the OR operator.
@@ -111,10 +111,19 @@ Below is sample javacript code using the match() function and the OR operator.
 >> // expected output: Array ['market', 'markets']
 
 ### Character Classes
+A character class, also known as a character set is one of the most commonly used components of regex. It tells the regex engine to match on any of the characters located within the square brackets. The order of the characters inside a character class does not matter. 
+
+You can also create a range of character by utilize a hyphen inside a character class. For example [0-9] matches a single digit between 0 and 9, which is much more efficient than entering each intiger. You may also concatenate multiple ranges within a single character class, including upper and lower case letters and numbers - like this ([A-Za-z0-9-]+).
+
+Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@[]^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
+
+
 
 ### Flags
 
+
 ### Grouping and Capturing
+
 
 ### Bracket Expressions
 
@@ -127,5 +136,13 @@ Below is sample javacript code using the match() function and the OR operator.
 ### Look-ahead and Look-behind
 
 ## Author
+**Brad Kelley**
+Brad has over 25 years of consulting and business development experience serving private and public-sector organizations throughout North America, Caribbean, Europe, Middle East, and Australia. Extensive expertise in business processes, supply chain, fleet management, workforce management, automation and change management, vehicle technologies, IoT, predictive analytics, and Cloud services. Brad is also a full-stack developer focused on edge-computing and mobile solutions, RESTful API integrations, artificial intelligence, and actionable analytics models. 
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+Connect with Brad on LinkedIn or by email.
+[LinkedIn Profile](https://www.linkedin.com/in/brad-kelley-bab30a39/)
+[Brad Kelley's Email](mailto:bradkelleytech@gmail.com)
+
+View Brad's development work & portfolio.
+[Github Repository](https://github.com/bkfleet1)
+[Development Portfolio](https://bkfleet1.github.io/class-portfolio/)

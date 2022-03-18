@@ -27,6 +27,7 @@ The content of a regular expression is entirely up to the developer, however, th
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
 
 ## Regex Components
+A regex is considered a literal, so the pattern must be wrapped in slash characters (/). 
 
 ### [Anchors](#anchors)
 An anchor specifies the position in the string on which a match must occur. When an anchor is used in a search expression, the regex engine does not advance through the string or consume characters; it looks for a match in the specified position only. For example, **^** specifies that the match must start at the beginning of a string. Therefore, the regular expression **^https:** matches **"https:"** only when it occurs at the beginning of a string.
@@ -45,7 +46,7 @@ Below are a list of anchors and their usage.
 | \< | Must occur at the start of word. |
 | \> | Must occur at the end of word. |
 
-### Quantifiers
+### [Quantifiers](#quantifiers)
 Quantifiers are used to represent the times the preeceding character or group of characters to appear in our match. By default, a quantifier matches as many instances of its quantified token or subpattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified tokens as relevant. 
 
 #### List of Quantifiers
@@ -86,7 +87,7 @@ Below is sample javacript code using the match() function and the * quantifier, 
 >> console.log( articleTitle.match(quantifyGreedy))
 >> // expected output: Array ['market', 'markets']
 
-### OR Operator
+### [OR Operator](#or-operator)
 The alternation operator, also known as the OR operator, has the lowest precedence of all regex operators. In other words, it tells the regex engine to match either everything to the left of the vertical bar, or everything to the right of the vertical bar. If you want to limit the reach of the alternation, you need to use parentheses for grouping.
 
 #### List of OR Operators
@@ -110,22 +111,41 @@ Below is sample javacript code using the match() function and the OR operator.
 >> console.log( articleTitle.match(orOperator))
 >> // expected output: Array ['market', 'markets']
 
-### Character Classes
-A character class, also known as a character set is one of the most commonly used components of regex. It tells the regex engine to match on any of the characters located within the square brackets. The order of the characters inside a character class does not matter. 
+### [Character Classes](#character-classes)
+A character class, also known as a character set is one of the most commonly used components of regex. [Bracket Expressions](#bracket-expressions), including positive and negative character groups, are considered character classes. The order of the characters inside a character class does not matter. 
 
-You can also create a range of character by utilize a hyphen inside a character class. For example [0-9] matches a single digit between 0 and 9, which is much more efficient than entering each intiger. You may also concatenate multiple ranges within a single character class, including upper and lower case letters and numbers - like this ([A-Za-z0-9-]+).
+Other common character classes include the following:
+| Character Class | Use |
+|:-----------:|:-----------|
+| . | Matches any character except the newline character (\n) |
+| \c | Control character. |
+| \s | Matches a single whitespace character, including tabs and line breaks. |
+| \S | Matches on non-whitespace. |
+| \d | Matches any integer. This class is equivalent to the bracket expression [0-9]. |
+| \D | Matches any non-integer character. |
+| \w | Matches any alphanumeric character, including the underscore (_). This class is equivalent to the bracket expression [A-Za-z0-9_]. |
+| \W | Matches any non-alphanumeric character (e.g., special characters). |
+| \xhh | Matches on hexadecimal character hh |
+| \Oxxx | Matches on octal character xxx |
 
-Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@[]^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
-
-
-
-### Flags
+### [Flags](#flags)
 
 
 ### Grouping and Capturing
 
 
-### Bracket Expressions
+### [Bracket Expressions](#bracket-expressions)
+A bracket expression, also known as a positive character group, is any characters inside a set of square brackets **[]** to be matched by the regex engine. 
+
+>> * Lowercase Letters - lowercase letters can be matched individual in a bracket expression [abc] or expressed in a range [a-z].
+
+>> * Uppercase Letters - uppercase letters can be matched individual in a bracket expression [ABC] or expressed in a range [A-Z].
+
+>> * Numbers - numbers can be matched individual in a bracket expression [123] or expressed in a range [0-9].
+
+>> * Special Characters - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following [a-zA-Z0-9_-%]. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@[]^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
+
+
 
 ### Greedy and Lazy Match
 

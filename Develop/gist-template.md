@@ -137,13 +137,13 @@ Other common character classes include the following:
 ### [Bracket Expressions](#bracket-expressions)
 A bracket expression, also known as a positive character group, is any characters inside a set of square brackets **[]** to be matched by the regex engine. 
 
->> * Lowercase Letters - lowercase letters can be matched individual in a bracket expression [abc] or expressed in a range [a-z].
+>> * **Lowercase Letters** - lowercase letters can be matched individual in a bracket expression [(a)(b)(c)] or expressed in a range [a-z].
 
->> * Uppercase Letters - uppercase letters can be matched individual in a bracket expression [ABC] or expressed in a range [A-Z].
+>> * **Uppercase Letters** - uppercase letters can be matched individual in a bracket expression [(A)(B)(C)] or expressed in a range [A-Z].
 
->> * Numbers - numbers can be matched individual in a bracket expression [123] or expressed in a range [0-9].
+>> * **Numbers** - numbers can be matched individual in a bracket expression [(1)(2)(3)] or expressed in a range [0-9].
 
->> * Special Characters - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following [a-zA-Z0-9_-%]. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@[]^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
+>> * **Special Characters** - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following [a-zA-Z0-9_-%]. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@[]^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
 
 
 

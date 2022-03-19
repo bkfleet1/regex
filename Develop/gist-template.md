@@ -1,17 +1,17 @@
-# Regex Tutorial & Cheatsheet
-Regular expressions (regex) are patterns used to match character combinations in strings (numbers, letters, and special characters). In JavaScript, regular expressions are also objects and used in search alorithms, find-replace functions, and data validation. Moreover, regex are used with **exec()** and **test()** methods of RegExp, and with the **match()**, **matchAll()**, **replace()**, **replaceAll()**, **search()**, and **split(**) methods of String.
+# Regex Tutorial & Cheat Sheet
+Regular expressions (regex) are patterns used to match character combinations in strings (numbers, letters, and special characters). In JavaScript, regular expressions are also objects and used in search algorithms, find-replace functions, and data validation. Moreover, regex are used with **exec()** and **test()** methods of RegExp, and with the **match()**, **matchAll()**, **replace()**, **replaceAll()**, **search()**, and **split(**) methods of String.
 
 The following regex pattern, for example, defines the pattern of a valid email address by its segments (i.e., account, domain, and domain extension), as well as the min & max length of the domain extension (ie., min=2, max=6).
 
 >>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
-A practical use of this regex definiton would be in the validation of user input in an application or an API endpoint prior to writing to a database.
+A practical use of this regex definition would be in the validation of user input in an application or an API endpoint prior to writing to a database.
 
 The content of a regular expression is entirely up to the developer, however, there are certain components that are needed for them to function properly. The following tutorial takes a deeper dive into the structure and syntax of regular expressions, and includes example code for reference.
 
 
 ## Summary
-As noted in the introduction, a regex is basically a the definition of a pattern, which used in search alorithms, find-replace functions, and data validation. The content of this gist provides a reference guide for the development of regex patterns, providing definitions, syntax lists, examples, and sample code for the various regex components.
+As noted in the introduction, a regex is basically a the definition of a pattern, which used in search algorithms, find-replace functions, and data validation. The content of this gist provides a reference guide for the development of regex patterns, providing definitions, syntax lists, examples, and sample code for the various regex components.
 
 
 ## Table of Contents
@@ -43,11 +43,11 @@ An anchor specifies the position in the string on which a match must occur. When
 | \z | Must occur at the end of the string only. |
 | \G | Must start at the position where the previous match ended. |
 | \b | Must occur on a word boundary. View the [boundaries](#boundaries) section for more details. |
-| \B | Must not occur on a word boundary. View the [boundaries](#boundaries) section for more details.|
+| \B | Must not occur on a word boundary. View the [boundaries](#boundaries) section for more details. |
 | \< | Must occur at the start of word. |
 | \> | Must occur at the end of word. |
 
-In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of the **^** and **$** anchors at the beginning and end of the expression.
+In the introduction, you were presented with a regex pattern to validate the different segments of an email address (shown again below). Notice the use of the **^** and **$** anchors at the beginning and end of the expression.
 
 >>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
@@ -56,7 +56,7 @@ Quantifiers define the number of times a character, pattern, or group appears in
 
 >>> **/[a-zA-A]+/**
 
-By default, a quantifier matches as many instances of its quantified pattern or sub-pattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified pattern or sub-pattern as possible. Refer to the [Greedy and Lazy Match](#greedy-and-lazy-match) section for a deeper dive into these quantifiers.  
+By default, a quantifier matches as many instances of its quantified pattern or sub-pattern as possible, often referred to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified pattern or sub-pattern as possible. Refer to the [Greedy and Lazy Match](#greedy-and-lazy-match) section for a deeper dive into these quantifiers.  
 
 #### List of Quantifiers
 | Quantifier | Description |
@@ -72,7 +72,7 @@ By default, a quantifier matches as many instances of its quantified pattern or 
 | {3,5} | 3, 4 or 5 |
 | {3,5}? | 3, 4 or 5, lazy |
 
-In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of the **+** and **{2,6}** quantifiers. The **+** character in that there are 1 or more characters matching the values in the preceeding [bracket expression](#bracket-expressions). Whereas the quantifier **{2,6}** indicates a minimum of 2 and maximum of 6 characters in the third group or segment of an email address, which is the domain extension after the **.** (e.g., com, net, info, uk).
+In the introduction, you were presented with a regex pattern to validate the different segments of an email address (shown again below). Notice the use of the **+** and **{2,6}** quantifiers. The **+** character in that there are 1 or more characters matching the values in the preceding [bracket expression](#bracket-expressions). Whereas the quantifier **{2,6}** indicates a minimum of 2 and maximum of 6 characters in the third group or segment of an email address, which is the domain extension after the **.** (e.g., com, net, info, uk).
 
 Note that the regex pattern is **greedy** as it lacks an **?** to limit its matching scope.
 
@@ -89,7 +89,7 @@ Note that the regex pattern is **greedy** as it lacks an **?** to limit its matc
 | (oh){2,4} | Matches any string that repeats the group of characters ‘ha’ two up to four times | “ohoh”, “ohohoh”, “ohohohoh” |
 
 #### Sample Code
-Below is sample javacript code with both Greedy and Lazy quantifier matching on the same variable.
+The Javascript code below demonstrates both **Greedy** and **Lazy** quantifier matching on the same variable.
 
 >> **const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
@@ -126,7 +126,7 @@ Below is an example of an OR operator.
 |   se(a\|e) | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
 
 #### Sample Code
-Below is sample javacript code using the match() function and the OR operator.
+The Javascript code below uses a match() function and an OR operator.
 
 >> **const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
@@ -155,7 +155,7 @@ A character class, also known as a character set is one of the most commonly use
 | \Oxxx | Matches on octal character xxx |
 
 
-In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of the **\d** character class, which is equivalent to the bracket expression [0-9].
+In the introduction, you were presented with a regex pattern to validate the different segments of an email address (shown again below). Notice the use of the **\d** character class, which is equivalent to the bracket expression [0-9].
 
 >>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
@@ -167,7 +167,7 @@ Flags define additional capabilities or limitation of an expression and can be c
 
 Notice the **g**, known as the **global flag** occurs after the closing forward-slash;
 
-Below is a list of the six (6) regex flags avaible to developers. However, the first three flags listed (i, g, m) are the most commonly used.
+Below is a list of the six (6) regex flags available to developers. However, the first three flags listed (i, g, m) are the most commonly used.
 
 #### List of Flags
 | Flag | Description |
@@ -190,7 +190,7 @@ You can **group** part of a regular expression by placing characters inside of p
 | (?:xyz) | Non-capturing group of characters. |
 | [xyz] | Square brackets, known as a [bracket expression](#bracket-expressions) are used to group characters (e.g. x or y or z). |
 
-In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of **()** and **[]** to create groupings.
+In the introduction, you were presented with a regex pattern to validate the different segments of an email address (shown again below). Notice the use of **()** and **[]** to create groupings.
 
 >>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
@@ -204,7 +204,7 @@ A bracket expression, also known as a positive character group, is any character
 
 >> * **Numbers** - numbers can be matched individual or expressed in a range [0-9].
 
->> * **Special Characters** - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following **[a-zA-Z0-9_-%]**. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
+>> * **Special Characters** - special characters can include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following **[a-zA-Z0-9_-%]**. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
 
 #### List of Bracket Expressions
 | Bracket Expression | Description |
@@ -216,12 +216,12 @@ A bracket expression, also known as a positive character group, is any character
 | [$@!] | Matches a digit from within a specified range. |
 
 
-In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of **[]** to create bracket expressions, which contain character ranges (alpha and numeric) and character classes on which to match. 
+In the introduction, you were presented with a regex pattern to validate the different segments of an email address (shown again below). Notice the use of **[]** to create bracket expressions, which contain character ranges (alpha and numeric) and character classes on which to match. 
 
 >>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
 #### Sample Code
-Below is sample javacript code using the match() function and a bracket expression. Notice in the example each individual word in the **const array** variable is returned seperately with the response array.
+The Javascript code below uses a match() function and a bracket expression. Notice in the example each individual word in the **const array** variable is returned seperately with the response array.
 
 >> **const array = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';**
 
@@ -246,7 +246,8 @@ Checkout the list of [Quantifiers](#quantifiers) availabe for use.
 Boundaries, known as word boundaries, are useful for matching a sequence of letters (e.g., an entire word) or numbers, or to ensure that characters occur at the beginning or end of a sequence. Boundaries are designated using **\b** meta-character to wrap the characters, like this - **\bdeveloper\b**. The use of a boundary in this example enforces a match on the entire word **developer**.
 
 #### Sample Code
-Below is sample javacript code using the match() function and a word boundary to search for the word **developer**.
+The Javascript code below uses a match() function and a word boundary to search for the word **developer**.
+
 >> **const search = 'A developer maliciously altered Open Source Software code to wipe files in a well known foreign country.'**
 
 >> **const boundary = /\bdeveloper\b/;**
@@ -285,7 +286,7 @@ For example, if you are want a regex function to validate a a phone number patte
 
 
 ### [Look-ahead and Look-behind](#look-ahead-and-look-behind)
-**Look-ahead** and **Look-behind**, collectively are known as **look-around**, are zero-length assertions that returning only a result of **match** or **no match**. The matching of **Look-ahead** and **Look-behind** are useful for validating data or checking if a condition exists, similar to a boolean.
+**Look-ahead** and **Look-behind**, collectively are known as **look-around**, are zero-length assertions that returning only a result of **match** or **no match**. The matching of **Look-ahead** and **Look-behind** are useful for validating data or checking if a condition exists, similar to a Boolean function.
 
 An example of a look-ahead would be **A(?=B)** meaning to return a **match** if **A** is found, but only if followed by **B**.
 

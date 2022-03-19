@@ -85,7 +85,7 @@ Below is sample javacript code with both Greedy and Lazy quantifier matching on 
 
 Greedy Quantifier Match
 
->> **const quantifyGreedy = /markets*/g**
+>> **const quantifyGreedy = /markets\*/g**
 
 >> **console.log( articleTitle.match(quantifyGreedy))**
 
@@ -93,7 +93,7 @@ Greedy Quantifier Match
 
 Lazy Quantifier Match
 
->> **const quantifyLazy = /markets*?/g**
+>> **const quantifyLazy = /markets\*?/g**
 
 >> **console.log( articleTitle.match(quantifyLazy))**
 

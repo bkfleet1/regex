@@ -105,8 +105,8 @@ Below are a list of OR operators and their usage.
 |   (a|b)   | Matches any string that contains either ‘a’ or ‘b’. |
 
 #### Examples
-Below are a few OR operator examples.
-| Example | Description | Matching string examples |
+Below is an example of an OR operator.
+| Example | Description | Results |
 |:-----------|:-----------|:-----------|
 |   se(a|e) | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
 
@@ -234,12 +234,17 @@ Back references are used to match the same text previously matched by a capturin
 
 ## Author
 **Brad Kelley**
+
 Brad has over 25 years of consulting and business development experience serving private and public-sector organizations throughout North America, Caribbean, Europe, Middle East, and Australia. Extensive expertise in business processes, supply chain, fleet management, workforce management, automation and change management, vehicle technologies, IoT, predictive analytics, and Cloud services. Brad is also a full-stack developer focused on edge-computing and mobile solutions, RESTful API integrations, artificial intelligence, and actionable analytics models. 
 
 Connect with Brad on LinkedIn or by email.
+
 [LinkedIn Profile](https://www.linkedin.com/in/brad-kelley-bab30a39/)
+
 [Brad Kelley's Email](mailto:bradkelleytech@gmail.com)
 
 View Brad's development work & portfolio.
+
 [Github Repository](https://github.com/bkfleet1)
+
 [Development Portfolio](https://bkfleet1.github.io/class-portfolio/)

@@ -47,7 +47,7 @@ Below are a list of anchors and their usage.
 | \> | Must occur at the end of word. |
 
 ### [Quantifiers](#quantifiers)
-Quantifiers are used to represent the times the preeceding character or group of characters to appear in our match. By default, a quantifier matches as many instances of its quantified token or subpattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified tokens as relevant. 
+Quantifiers are used to represent the times the preeceding character or group of characters to appear in our match. By default, a quantifier matches as many instances of its quantified token or subpattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified tokens as relevant. Refer to the [Greedy and Lazy Match](#greedy-and-lazy-match) section for a deeper dive into these quantifiers.  
 
 #### List of Quantifiers
 Below are a list of quantifiers and their usage.
@@ -75,26 +75,28 @@ Below are a few quantifier examples.
 | (oh){2,4} | Matches any string that repeats the group of characters ‘ha’ two up to four times | “ohoh”, “ohohoh”, “ohohohoh” |
 
 #### Sample Code
-Below is sample javacript code using the match() function and the * quantifier, both lazy and greedy versions.
+Below is sample javacript code with both Greedy and Lazy quantifier matching on the same variable.
 
->> const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'
+>> **const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
->> const quantifyLazy = /markets*?/g
->> console.log( articleTitle.match(quantifyLazy))
->> // expected output: Array ['market', 'market']
+Greedy Quantifier Match
+>> **const quantifyGreedy = /markets*/g**
+>> **console.log( articleTitle.match(quantifyGreedy))**
+>> **// expected output: Array ['market', 'markets']**
 
->> const quantifyGreedy = /markets*/g
->> console.log( articleTitle.match(quantifyGreedy))
->> // expected output: Array ['market', 'markets']
+Lazy Quantifier Match
+>> **const quantifyLazy = /markets*?/g**
+>> **console.log( articleTitle.match(quantifyLazy))**
+>> **// expected output: Array ['market', 'market']**
 
 ### [OR Operator](#or-operator)
-The alternation operator, also known as the OR operator, has the lowest precedence of all regex operators. In other words, it tells the regex engine to match either everything to the left of the vertical bar, or everything to the right of the vertical bar. If you want to limit the reach of the alternation, you need to use parentheses for grouping.
+The **alternation** operator, also known as the **OR operator**, has the lowest precedence of all regex operators. In other words, it tells the regex engine to match either everything to the left of the vertical bar, or everything to the right of the vertical bar. If you want to limit the reach of the alternation, you need to use parentheses for grouping.
 
 #### List of OR Operators
 Below are a list of OR operators and their usage.
 | OR Operators | Use |
 |:-----------:|:-----------|
-|   a|b   | Matches any string that contains either ‘a’ or ‘b’. |
+|   (a|b)   | Matches any string that contains either ‘a’ or ‘b’. |
 
 #### Examples
 Below are a few OR operator examples.
@@ -105,16 +107,16 @@ Below are a few OR operator examples.
 #### Sample Code
 Below is sample javacript code using the match() function and the OR operator.
 
->> const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'
+>> **const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
->> const orOperator = /marke(ts|t)/g
->> console.log( articleTitle.match(orOperator))
->> // expected output: Array ['market', 'markets']
+>> **const orOperator = /marke(ts|t)/g**
+>> **console.log( articleTitle.match(orOperator))**
+>> **// expected output: Array ['market', 'markets']**
 
 ### [Character Classes](#character-classes)
-A character class, also known as a character set is one of the most commonly used components of regex. [Bracket Expressions](#bracket-expressions), including positive and negative character groups, are considered character classes. The order of the characters inside a character class does not matter. 
+A character class, also known as a character set is one of the most commonly used components of regex. [Bracket Expressions](#bracket-expressions), including positive and negative character groups, are considered character classes. The order of which characters are defined inside a class does not matter. 
 
-Other common character classes include the following:
+#### List of other Character Classes
 | Character Class | Use |
 |:-----------:|:-----------|
 | . | Matches any character except the newline character (\n) |
@@ -129,38 +131,93 @@ Other common character classes include the following:
 | \Oxxx | Matches on octal character xxx |
 
 ### [Flags](#flags)
+Flags are placed at the end of a regex and define additional capabilities or limitation of an expression. Flags can be used, either separately or together and in any order, but these are the three you're most likely to encounter:
 
+| Flag | Use |
+| i | Makes the expression search case-insensitively. |
+| g | Makes the expression search for all occurrences (global). |
+| m | Makes the boundary characters ^ and $ match the beginning and ending of every single line instead of the beginning and ending of the whole string. |
+| s | Makes the wild character . match newlines as well. |
+| y | Makes the expression start its searching from the index indicated in its lastIndex property (sticky). |
+| u | Makes the expression assume individual characters as code points, not code units, and thus match 32-bit characters as well. |
 
-### Grouping and Capturing
+### [Grouping and Capturing](#grouping-and-capturing)
+You can **group** part of a regular expression by placing characters inside of parenthesis (). This allows you to apply a [quantifier](#quantifiers) to the group or to restrict [alternation](#or-operator) to a portion of an expression.
+
+#### List of Grouping Methods
+| Grouping | Use |
+|:-----------:|:-----------|
+| (xyz) | Grouping of characters. |
+| (?:xyz) | Non-capturing group of characters. |
 
 
 ### [Bracket Expressions](#bracket-expressions)
 A bracket expression, also known as a positive character group, is any characters inside a set of square brackets **[]** to be matched by the regex engine. 
 
->> * **Lowercase Letters** - lowercase letters can be matched individual in a bracket expression [(a)(b)(c)] or expressed in a range [a-z].
+>> * **Lowercase Letters** - lowercase letters can be matched individual or expressed in a range [a-z].
 
->> * **Uppercase Letters** - uppercase letters can be matched individual in a bracket expression [(A)(B)(C)] or expressed in a range [A-Z].
+>> * **Uppercase Letters** - uppercase letters can be matched individual or expressed in a range [A-Z].
 
->> * **Numbers** - numbers can be matched individual in a bracket expression [(1)(2)(3)] or expressed in a range [0-9].
+>> * **Numbers** - numbers can be matched individual or expressed in a range [0-9].
 
->> * **Special Characters** - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following [a-zA-Z0-9_-%]. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@[]^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
+>> * **Special Characters** - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following [a-zA-Z0-9_-%]. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
+
+#### List of Bracket Expressions
+| Bracket Expression | Use |
+|:-----------:|:-----------|
+| [xyz] | Matches a range of characters (e.g. x or y or z). |
+| [^xyz] | Matches a character other than x or y or z. |
+| [a-q] | Matches a character from within a specified range. |
+| [0-9] | Matches a digit from within a specified range. |
+| [$@!] | Matches a digit from within a specified range. |
+
 
 #### Sample Code
 Below is sample javacript code using the match() function and a bracket expression.
 
->> const array = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';
+>> **const array = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';**
 
->> const bracketExpression = /([A-Za-z0-9-]+)/g;
->> console.log(array.match(bracketExpression));
->> // expected output: Array ['Stock', 'market', 'is', 'supposed', 'to', 'drop', 'when', 'the', 'Fed', 'hikes', 'interest', 'rates', 'So', 'why', 'are', 'the', 'markets', 'rallying', 'now']
+>> **const bracketExpression = /([A-Za-z0-9-]+)/g;**
+>> **console.log(array.match(bracketExpression));**
+>> **// expected output: Array ['Stock', 'market', 'is', 'supposed', 'to', 'drop', 'when', 'the', 'Fed', 'hikes', 'interest', 'rates', 'So', 'why', 'are', 'the', 'markets', 'rallying', 'now']**
 
-### Greedy and Lazy Match
+### [Greedy and Lazy Match](#greedy-and-lazy-match)
+To find a match, the regex engine will process characters one at a time. When a partial match begins, the engine will remember the start position so it can go back in the event that the following characters don't produce a complete match (i.e., backtracking). Greedy & lazy quantifiers only exist in backtracking regex engines.
 
-### Boundaries
+By default, all quantifiers are **greedy**, which means that the regex engine will attempt to repeat the sub-pattern as many times as possible before exploring shorter matches. In other words, a greedy pattern will match the longest possible string.
 
-### Back-references
+Conversely, a **lazy** quantifier, also called non-greedy or reluctant quantifier always attempts to repeat the sub-pattern as few times as possible, before exploring longer matches by expansion. In other words, a lazy pattern will match the shortest possible string. To make quantifier **lazy**, append a **?** to the end of an existing quantifier (e.g., *?, +?, {0,8}?).
 
-### Look-ahead and Look-behind
+
+
+### [Boundaries](#boundaries)
+
+
+
+### [Back-references](#back-references)
+Back references are used to match the same text previously matched by a capturing group. For example, if you are want a regex function to validate a a phone number pattern of ###-###-####, a back-reference can be used to match the hyphen separater desfined in the second grouping . The sample code below illustrates this regex logic.
+
+>> **const array = '(832)999-1111,832-999-1111,832 999 1111'**
+
+>> **const backRef = /\(?([0-9]{3})\)?([.-]?)([0-9]{3})\2([0-9]{4})/g;**
+>> **console.log(array.match(backRef));**
+>> **// expected output: Array [ '832-999-1111' ]**
+
+#### List of Back-references
+| Back-references | Use |
+|:-----------:|:-----------|
+| $n | nth non-passive group |
+| $2 | "xyz" in /^(abc(xyz))$/ |
+| $1 | "xyz" in //v(?:abc)(xyz)$/ |
+| $' | Before matched string |
+| $’ | After matched string |
+| $+ | Last matched string |
+| $& | Entire matched string |
+| $_ | Entire input string |
+| $$ | Literal "$" |
+
+
+### [Look-ahead and Look-behind](#look-ahead-and-look-behind)
 
 ## Author
 **Brad Kelley**

@@ -47,6 +47,9 @@ An anchor specifies the position in the string on which a match must occur. When
 | \< | Must occur at the start of word. |
 | \> | Must occur at the end of word. |
 
+In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of the **^** and **$** anchors at the beginning and end of the expression.
+
+>>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
 ### [Quantifiers](#quantifiers)
 Quantifiers define the number of times a character, pattern, or group appears in a regex match. For example, if you wanted to match as many characters in the group [a-zA-Z] as possible, you can use the plus symbol **+** after the group. Use of the **+** quantifier provides for matching one or more of the preceding characters. Below is an illustration of this example.
@@ -68,6 +71,13 @@ By default, a quantifier matches as many instances of its quantified pattern or 
 | {3,} | 3 or more |
 | {3,5} | 3, 4 or 5 |
 | {3,5}? | 3, 4 or 5, lazy |
+
+In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of the **+** and **{2,6}** quantifiers. The **+** character in that there are 1 or more characters matching the values in the preceeding [bracket expression](#bracket-expressions). Whereas the quantifier **{2,6}** indicates a minimum of 2 and maximum of 6 characters in the third group or segment of an email address, which is the domain extension after the **.** (e.g., com, net, info, uk).
+
+Note that the regex pattern is **greedy** as it lacks an **?** to limit its matching scope.
+
+>>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
+
 
 #### Examples
 | Example | Description | Results |
@@ -145,6 +155,11 @@ A character class, also known as a character set is one of the most commonly use
 | \Oxxx | Matches on octal character xxx |
 
 
+In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of the **\d** character class, which is equivalent to the bracket expression [0-9].
+
+>>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
+
+
 ### [Flags](#flags)
 Flags define additional capabilities or limitation of an expression and can be combined or used independently; order does not matter. They are placed at the end of a regex pattern, after the closing forward-slash as illustrated below.
 
@@ -175,6 +190,10 @@ You can **group** part of a regular expression by placing characters inside of p
 | (?:xyz) | Non-capturing group of characters. |
 | [xyz] | Square brackets, known as a [bracket expression](#bracket-expressions) are used to group characters (e.g. x or y or z). |
 
+In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of **()** and **[]** to create groupings.
+
+>>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
+
 
 ### [Bracket Expressions](#bracket-expressions)
 A bracket expression, also known as a positive character group, is any characters inside a set of square brackets **[]** to be matched by the regex engine. 
@@ -195,6 +214,11 @@ A bracket expression, also known as a positive character group, is any character
 | [a-q] | Matches a character from within a specified range. |
 | [0-9] | Matches a digit from within a specified range. |
 | [$@!] | Matches a digit from within a specified range. |
+
+
+In the introduction, you were presented with a regex pattern to validate the different segements of an email address (shown again below). Notice the use of **[]** to create bracket expressions, which contain character ranges (alpha and numeric) and character classes on which to match. 
+
+>>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
 #### Sample Code
 Below is sample javacript code using the match() function and a bracket expression. Notice in the example each individual word in the **const array** variable is returned seperately with the response array.

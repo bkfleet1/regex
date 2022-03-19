@@ -18,8 +18,13 @@ const bracketExpression = /([A-Za-z0-9-]+)/g;
 console.log(modifiedQuote.match(bracketExpression));
 // expected output: Array ['Stock', 'market', 'is', 'supposed', 'to', 'drop', 'when', 'the', 'Fed', 'hikes', 'interest', 'rates', 'So', 'why', 'are', 'the', 'markets', 'rallying', 'now']
 
-const array = '(832)999-1111,832-999-1111,832-abc-1111'
+const array = '(832)999-1111,832-999-1111,832-abc-1111,999-999-1111'
 
-const backRef = /\(?([0-9]{3})\)?([.-]?)([0-9]{3})\2([0-9]{4})/g;
+const backRef = /\(?([0-9]{3})\)?([-]?)([0-9]{3})\2([0-9]{4})/g;
 console.log(array.match(backRef));
 // expected output: Array [ '832-999-1111' ]
+
+const search = 'A developer maliciously altered Open Source Software code to wipe files in a well known foreign country.'
+const boundary = /\bdeveloper\b/;
+console.log(search.match(boundary));
+// expected output: Array [ 'developer' ]

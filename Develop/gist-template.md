@@ -1,17 +1,18 @@
 # Regex Tutorial & Cheatsheet
-
-Introductory paragraph (replace this with your text)
-
-## Summary
 Regular expressions (regex) are patterns used to match character combinations in strings (numbers, letters, and special characters). In JavaScript, regular expressions are also objects and used in search alorithms, find-replace functions, and data validation. Moreover, regex are used with **exec()** and **test()** methods of RegExp, and with the **match()**, **matchAll()**, **replace()**, **replaceAll()**, **search()**, and **split(**) methods of String.
 
-For example, the following regex patterb defines the valid characters for each segment of an email address (i.e., account, domain, and domain extension), as well as the min & max length of the domain extension (ie., min=2, max=6).
+The following regex pattern, for example, defines the pattern of a valid email address by its segments (i.e., account, domain, and domain extension), as well as the min & max length of the domain extension (ie., min=2, max=6).
 
 > > > **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
 A practical use of this regex definiton would be in the validation of user input in an application or an API endpoint prior to writing to a database.
 
 The content of a regular expression is entirely up to the developer, however, there are certain components that are needed for them to function properly. The following tutorial takes a deeper dive into the structure and syntax of regular expressions, and includes example code for reference.
+
+
+## Summary
+As noted in the introduction, a regex is basically a the definition of a pattern, which used in search alorithms, find-replace functions, and data validation. The content of this gist provides a reference guide for the development of regex patterns, providing definitions, syntax lists, examples, and sample code for the various regex components.
+
 
 ## Table of Contents
 - [Anchors](#anchors)
@@ -26,13 +27,13 @@ The content of a regular expression is entirely up to the developer, however, th
 - [Back-references](#back-references)
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
 
+
 ## Regex Components
-A regex is considered a literal, so the pattern must be wrapped in slash characters (/). 
 
 ### [Anchors](#anchors)
 An anchor specifies the position in the string on which a match must occur. When an anchor is used in a search expression, the regex engine does not advance through the string or consume characters; it looks for a match in the specified position only. For example, **^** specifies that the match must start at the beginning of a string. Therefore, the regular expression **^https:** matches **"https:"** only when it occurs at the beginning of a string.
 
-Below are a list of anchors and their usage.
+#### List of Anchors
 | Anchor | Usage |
 |:-----------:|:-----------|
 | ^ | Must occur at the beginning of a regex string. |
@@ -41,17 +42,21 @@ Below are a list of anchors and their usage.
 | \Z | Must occur at the end of the string, or before \n at the end of the string. |
 | \z | Must occur at the end of the string only. |
 | \G | Must start at the position where the previous match ended. |
-| \b | Must occur on a word boundary. |
-| \B | Must not occur on a word boundary. |
+| \b | Must occur on a word boundary. View the [boundaries](#boundaries) section for more details. |
+| \B | Must not occur on a word boundary. View the [boundaries](#boundaries) section for more details.|
 | \< | Must occur at the start of word. |
 | \> | Must occur at the end of word. |
 
+
 ### [Quantifiers](#quantifiers)
-Quantifiers are used to represent the times the preeceding character or group of characters to appear in our match. By default, a quantifier matches as many instances of its quantified token or subpattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified tokens as relevant. Refer to the [Greedy and Lazy Match](#greedy-and-lazy-match) section for a deeper dive into these quantifiers.  
+Quantifiers define the number of times a character, pattern, or group appears in a regex match. For example, if you wanted to match as many characters in the group [a-zA-Z] as possible, you can use the plus symbol **+** after the group. Use of the **+** quantifier provides for matching one or more of the preceding characters. Below is an illustration of this example.
+
+**/[a-zA-A]+/**
+
+By default, a quantifier matches as many instances of its quantified pattern or sub-pattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified pattern or sub-pattern as possible. Refer to the [Greedy and Lazy Match](#greedy-and-lazy-match) section for a deeper dive into these quantifiers.  
 
 #### List of Quantifiers
-Below are a list of quantifiers and their usage.
-| Quantifiers| Usage |
+| Quantifier | Description |
 |:-----------:|:-----------|
 | * | 0 or more |
 | *? | 0 or more, lazy |
@@ -65,7 +70,6 @@ Below are a list of quantifiers and their usage.
 | {3,5}? | 3, 4 or 5, lazy |
 
 #### Examples
-Below are a few quantifier examples.
 | Example | Description | Results |
 |:-----------|:-----------|:-----------|
 | A+ | Matches one or more A characters | "A", "AA", "AAA", "AAAA" |
@@ -95,20 +99,21 @@ Lazy Quantifier Match
 
 >> **// expected output: Array ['market', 'market']**
 
+
 ### [OR Operator](#or-operator)
 The **alternation** operator, also known as the **OR operator**, has the lowest precedence of all regex operators. In other words, it tells the regex engine to match either everything to the left of the vertical bar, or everything to the right of the vertical bar. If you want to limit the reach of the alternation, you need to use parentheses for grouping.
 
 #### List of OR Operators
 Below are a list of OR operators and their usage.
-| OR Operators | Use |
+| OR Operators | Description |
 |:-----------:|:-----------|
-|   (a|b)   | Matches any string that contains either ‘a’ or ‘b’. |
+|   (a\|b)   | Matches any string that contains either ‘a’ or ‘b’. |
 
-#### Examples
+#### Example
 Below is an example of an OR operator.
 | Example | Description | Results |
 |:-----------|:-----------|:-----------|
-|   se(a|e) | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
+|   se(a\|e) | Matches any string that contains the text ‘se’ followed either by an ‘a’ or an ‘e’ | “see”, “sea” |
 
 #### Sample Code
 Below is sample javacript code using the match() function and the OR operator.
@@ -121,11 +126,12 @@ Below is sample javacript code using the match() function and the OR operator.
 
 >> **// expected output: Array ['market', 'markets']**
 
+
 ### [Character Classes](#character-classes)
 A character class, also known as a character set is one of the most commonly used components of regex. [Bracket Expressions](#bracket-expressions), including positive and negative character groups, are considered character classes. The order of which characters are defined inside a class does not matter. 
 
 #### List of other Character Classes
-| Character Class | Use |
+| Character Class | Description |
 |:-----------:|:-----------|
 | . | Matches any character except the newline character (\n) |
 | \c | Control character. |
@@ -138,10 +144,18 @@ A character class, also known as a character set is one of the most commonly use
 | \xhh | Matches on hexadecimal character hh |
 | \Oxxx | Matches on octal character xxx |
 
-### [Flags](#flags)
-Flags are placed at the end of a regex and define additional capabilities or limitation of an expression. Flags can be used, either separately or together and in any order, but these are the three you're most likely to encounter:
 
-| Flag | Use |
+### [Flags](#flags)
+Flags define additional capabilities or limitation of an expression and can be combined or used independently; order does not matter. They are placed at the end of a regex pattern, after the closing forward-slash as illustrated below.
+
+**const bracketExpression = /([A-Za-z0-9-]+)/g;**
+
+Notice the **g**, known as the **global flag** occurs after the closing forward-slash;
+
+Below is a list of the six (6) regex flags avaible to developers. However, the first three flags listed (i, g, m) are the most commonly used.
+
+#### List of Flags
+| Flag | Description |
 |:-----------:|:-----------|
 | i | Makes the expression search case-insensitively. |
 | g | Makes the expression search for all occurrences (global). |
@@ -150,14 +164,16 @@ Flags are placed at the end of a regex and define additional capabilities or lim
 | y | Makes the expression start its searching from the index indicated in its lastIndex property (sticky). |
 | u | Makes the expression assume individual characters as code points, not code units, and thus match 32-bit characters as well. |
 
+
 ### [Grouping and Capturing](#grouping-and-capturing)
-You can **group** part of a regular expression by placing characters inside of parenthesis (). This allows you to apply a [quantifier](#quantifiers) to the group or to restrict [alternation](#or-operator) to a portion of an expression.
+You can **group** part of a regular expression by placing characters inside of parenthesis **()**, also known as a  a sequence or sub-expression. Use of groups allows you to apply [quantifiers](#quantifiers) or restrict [alternations](#or-operator) to a portion of a pattern.
 
 #### List of Grouping Methods
-| Grouping | Use |
+| Grouping | Description |
 |:-----------:|:-----------|
-| (xyz) | Grouping of characters. |
+| (xyz) | Capture group of characters. |
 | (?:xyz) | Non-capturing group of characters. |
+| [xyz] | Square brackets, known as a [bracket expression](#bracket-expressions) are used to group characters (e.g. x or y or z). |
 
 
 ### [Bracket Expressions](#bracket-expressions)
@@ -169,10 +185,10 @@ A bracket expression, also known as a positive character group, is any character
 
 >> * **Numbers** - numbers can be matched individual or expressed in a range [0-9].
 
->> * **Special Characters** - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following [a-zA-Z0-9_-%]. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
+>> * **Special Characters** - special characters can  include any non-alphanumeric characters, such as punctuation or symbols. It's important to note that the hyphen used in a alpha or numeric range is not included in the regex engine's pattern matching. To include a hyphen in a regex pattern match, add the hyphen after any declared ranges like the following **[a-zA-Z0-9_-%]**. Special characters may also be included within the character class. Some special characters to consider include **-!#$%()/:?@^_{}~+.**, which are supported by OWASP, Oracle Identity Manager and Microsoft Active Directory.
 
 #### List of Bracket Expressions
-| Bracket Expression | Use |
+| Bracket Expression | Description |
 |:-----------:|:-----------|
 | [xyz] | Matches a range of characters (e.g. x or y or z). |
 | [^xyz] | Matches a character other than x or y or z. |
@@ -180,9 +196,8 @@ A bracket expression, also known as a positive character group, is any character
 | [0-9] | Matches a digit from within a specified range. |
 | [$@!] | Matches a digit from within a specified range. |
 
-
 #### Sample Code
-Below is sample javacript code using the match() function and a bracket expression.
+Below is sample javacript code using the match() function and a bracket expression. Notice in the example each individual word in the **const array** variable is returned seperately with the response array.
 
 >> **const array = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';**
 
@@ -192,32 +207,46 @@ Below is sample javacript code using the match() function and a bracket expressi
 
 >> **// expected output: Array ['Stock', 'market', 'is', 'supposed', 'to', 'drop', 'when', 'the', 'Fed', 'hikes', 'interest', 'rates', 'So', 'why', 'are', 'the', 'markets', 'rallying', 'now']**
 
+
 ### [Greedy and Lazy Match](#greedy-and-lazy-match)
-To find a match, the regex engine will process characters one at a time. When a partial match begins, the engine will remember the start position so it can go back in the event that the following characters don't produce a complete match (i.e., backtracking). Greedy & lazy quantifiers only exist in backtracking regex engines.
+To find a match, the regex engine will process characters one at a time. When a partial match begins, the engine will remember the start position so it can go back in the event that the following characters don't produce a complete match (i.e., backtracking). Greedy & lazy [quantifiers](#quantifiers) only exist in backtracking regex engines.
 
 By default, all quantifiers are **greedy**, which means that the regex engine will attempt to repeat the sub-pattern as many times as possible before exploring shorter matches. In other words, a greedy pattern will match the longest possible string.
 
 Conversely, a **lazy** quantifier, also called non-greedy or reluctant quantifier always attempts to repeat the sub-pattern as few times as possible, before exploring longer matches by expansion. In other words, a lazy pattern will match the shortest possible string. To make quantifier **lazy**, append a **?** to the end of an existing quantifier (e.g., *?, +?, {0,8}?).
 
+Checkout the list of [Quantifiers](#quantifiers) availabe for use.
 
 
 ### [Boundaries](#boundaries)
+Boundaries, known as word boundaries, are useful for matching a sequence of letters (e.g., an entire word) or numbers, or to ensure that characters occur at the beginning or end of a sequence. Boundaries are designated using **\b** meta-character to wrap the characters, like this - **\bdeveloper\b**. The use of a boundary in this example enforces a match on the entire word **developer**.
 
+#### Sample Code
+Below is sample javacript code using the match() function and a word boundary to search for the word **developer**.
+>> **const search = 'A developer maliciously altered Open Source Software code to wipe files in a well known foreign country.'**
+
+>> **const boundary = /\bdeveloper\b/;**
+
+>> **console.log(search.match(boundary));**
+
+>> **// expected output: Array [ 'developer' ]**
 
 
 ### [Back-references](#back-references)
-Back references are used to match the same text previously matched by a capturing group. For example, if you are want a regex function to validate a a phone number pattern of ###-###-####, a back-reference can be used to match the hyphen separater desfined in the second grouping . The sample code below illustrates this regex logic.
+Back references are used to match the same text previously matched by a capturing group, which provides for consistence and less coding. 
+
+For example, if you are want a regex function to validate a a phone number pattern of ###-###-####, a back-reference can be used to match the hyphen separater defined in the second grouping, which looks like **?([-]?)**. The code below illustrates the aforementioned example.
 
 >> **const array = '(832)999-1111,832-999-1111,832 999 1111'**
 
->> **const backRef = /\(?([0-9]{3})\)?([.-]?)([0-9]{3})\2([0-9]{4})/g;**
+>> **const backRef = /\(?([0-9]{3})\)?([-]?)([0-9]{3})\2([0-9]{4})/g;**
 
 >> **console.log(array.match(backRef));**
 
 >> **// expected output: Array [ '832-999-1111' ]**
 
 #### List of Back-references
-| Back-references | Use |
+| Back-references | Description |
 |:-----------:|:-----------|
 | $n | nth non-passive group |
 | $2 | "xyz" in /^(abc(xyz))$/ |
@@ -230,7 +259,14 @@ Back references are used to match the same text previously matched by a capturin
 | $$ | Literal "$" |
 
 
+
 ### [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+**Look-ahead** and **Look-behind**, collectively are known as **look-around**, are zero-length assertions that returning only a result of **match** or **no match**. The matching of **Look-ahead** and **Look-behind** are useful for validating data or checking if a condition exists, similar to a boolean.
+
+An example of a look-ahead would be **A(?=B)** meaning to return a **match** if **A** is found, but only if followed by **B**.
+
+In a look-behind the expression **(?<=A)B** would return a **match** if **A** is found, but only if **B** came before it.
+
 
 ## Author
 **Brad Kelley**
@@ -239,12 +275,12 @@ Brad has over 25 years of consulting and business development experience serving
 
 Connect with Brad on LinkedIn or by email.
 
-[LinkedIn Profile](https://www.linkedin.com/in/brad-kelley-bab30a39/)
+> [LinkedIn Profile](https://www.linkedin.com/in/brad-kelley-bab30a39/)
 
-[Brad Kelley's Email](mailto:bradkelleytech@gmail.com)
+> [Brad Kelley's Email](mailto:bradkelleytech@gmail.com)
 
 View Brad's development work & portfolio.
 
-[Github Repository](https://github.com/bkfleet1)
+> [Github Repository](https://github.com/bkfleet1)
 
-[Development Portfolio](https://bkfleet1.github.io/class-portfolio/)
+> [Development Portfolio](https://bkfleet1.github.io/class-portfolio/)

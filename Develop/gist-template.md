@@ -3,7 +3,7 @@ Regular expressions (regex) are patterns used to match character combinations in
 
 The following regex pattern, for example, defines the pattern of a valid email address by its segments (i.e., account, domain, and domain extension), as well as the min & max length of the domain extension (ie., min=2, max=6).
 
-> > > **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
+>>> **/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/**
 
 A practical use of this regex definiton would be in the validation of user input in an application or an API endpoint prior to writing to a database.
 
@@ -51,7 +51,7 @@ An anchor specifies the position in the string on which a match must occur. When
 ### [Quantifiers](#quantifiers)
 Quantifiers define the number of times a character, pattern, or group appears in a regex match. For example, if you wanted to match as many characters in the group [a-zA-Z] as possible, you can use the plus symbol **+** after the group. Use of the **+** quantifier provides for matching one or more of the preceding characters. Below is an illustration of this example.
 
-**/[a-zA-A]+/**
+>>> **/[a-zA-A]+/**
 
 By default, a quantifier matches as many instances of its quantified pattern or sub-pattern as possible, often refered to as "greedy". In contrast, a "lazy" or "reluctant" quantifier matches on as few quantified pattern or sub-pattern as possible. Refer to the [Greedy and Lazy Match](#greedy-and-lazy-match) section for a deeper dive into these quantifiers.  
 
@@ -148,7 +148,7 @@ A character class, also known as a character set is one of the most commonly use
 ### [Flags](#flags)
 Flags define additional capabilities or limitation of an expression and can be combined or used independently; order does not matter. They are placed at the end of a regex pattern, after the closing forward-slash as illustrated below.
 
-**const bracketExpression = /([A-Za-z0-9-]+)/g;**
+>>> **const bracketExpression = /([A-Za-z0-9-]+)/g;**
 
 Notice the **g**, known as the **global flag** occurs after the closing forward-slash;
 

@@ -1,4 +1,4 @@
-# Title (replace with your title)
+# Regex Tutorial & Cheatsheet
 
 Introductory paragraph (replace this with your text)
 
@@ -80,13 +80,19 @@ Below is sample javacript code with both Greedy and Lazy quantifier matching on 
 >> **const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
 Greedy Quantifier Match
+
 >> **const quantifyGreedy = /markets*/g**
+
 >> **console.log( articleTitle.match(quantifyGreedy))**
+
 >> **// expected output: Array ['market', 'markets']**
 
 Lazy Quantifier Match
+
 >> **const quantifyLazy = /markets*?/g**
+
 >> **console.log( articleTitle.match(quantifyLazy))**
+
 >> **// expected output: Array ['market', 'market']**
 
 ### [OR Operator](#or-operator)
@@ -110,7 +116,9 @@ Below is sample javacript code using the match() function and the OR operator.
 >> **const  articleTitle = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?'**
 
 >> **const orOperator = /marke(ts|t)/g**
+
 >> **console.log( articleTitle.match(orOperator))**
+
 >> **// expected output: Array ['market', 'markets']**
 
 ### [Character Classes](#character-classes)
@@ -134,6 +142,7 @@ A character class, also known as a character set is one of the most commonly use
 Flags are placed at the end of a regex and define additional capabilities or limitation of an expression. Flags can be used, either separately or together and in any order, but these are the three you're most likely to encounter:
 
 | Flag | Use |
+|:-----------:|:-----------|
 | i | Makes the expression search case-insensitively. |
 | g | Makes the expression search for all occurrences (global). |
 | m | Makes the boundary characters ^ and $ match the beginning and ending of every single line instead of the beginning and ending of the whole string. |
@@ -178,7 +187,9 @@ Below is sample javacript code using the match() function and a bracket expressi
 >> **const array = 'Stock market is supposed to drop when the Fed hikes interest rates. So why are the markets rallying now?';**
 
 >> **const bracketExpression = /([A-Za-z0-9-]+)/g;**
+
 >> **console.log(array.match(bracketExpression));**
+
 >> **// expected output: Array ['Stock', 'market', 'is', 'supposed', 'to', 'drop', 'when', 'the', 'Fed', 'hikes', 'interest', 'rates', 'So', 'why', 'are', 'the', 'markets', 'rallying', 'now']**
 
 ### [Greedy and Lazy Match](#greedy-and-lazy-match)
@@ -200,7 +211,9 @@ Back references are used to match the same text previously matched by a capturin
 >> **const array = '(832)999-1111,832-999-1111,832 999 1111'**
 
 >> **const backRef = /\(?([0-9]{3})\)?([.-]?)([0-9]{3})\2([0-9]{4})/g;**
+
 >> **console.log(array.match(backRef));**
+
 >> **// expected output: Array [ '832-999-1111' ]**
 
 #### List of Back-references
